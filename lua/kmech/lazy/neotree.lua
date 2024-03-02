@@ -12,7 +12,7 @@ return {
         require("neo-tree").setup({
             update_focused_file = {
                 enable = true
-            }
+            },
         })
     end
 }

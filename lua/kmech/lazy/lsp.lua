@@ -30,6 +30,11 @@ return {
         opts = function()
             local cmp = require("cmp")
             return {
+                snippet = {
+                    expand = function(args)
+                        require("luasnip").lsp_expand(args.body)
+                    end,
+                },
                 sources = cmp.config.sources({
                     { name = "nvim_lsp" },
                     { name = "path" },
@@ -60,14 +65,20 @@ return {
             -- And you can configure cmp even more, if you want to.
             local cmp = require('cmp')
             local cmp_action = lsp_zero.cmp_action()
-
             require("luasnip.loaders.from_vscode").lazy_load()
-            require "luasnip".filetype_extend("javascript", { "vue" })
-            require "luasnip".filetype_extend("typescript", { "vue" })
+
+            require("luasnip").filetype_extend("javascript", { "vue" })
+            require("luasnip").filetype_extend("typescript", { "vue" })
+            require("luasnip").filetype_extend("javascript", { "react" })
+            require("luasnip").filetype_extend("typescript", { "react" })
             cmp.setup({
                 sources = {
                     { name = "nvim_lsp" },
                     { name = "luasnip" },
+                },
+                window = {
+                    -- completion = cmp.config.window.bordered(),
+                    -- documentation = cmp.config.window.bordered(),
                 },
                 formatting = lsp_zero.cmp_format(),
                 mapping = cmp.mapping.preset.insert({
