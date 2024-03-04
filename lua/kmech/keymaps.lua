@@ -21,3 +21,7 @@ end, { desc = "[T]erminal [O]pen" })
 
 -- terminal mode
 keymap('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+
+-- vertical motions
+keymap("n", "<C-d>", "<C-d>zz")
+keymap("n", "<C-u>", "<C-u>zz")
