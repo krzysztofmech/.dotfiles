@@ -125,6 +125,8 @@ return {
                 lsp_zero.default_keymaps({ buffer = bufnr })
             end)
 
+            vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
+            vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { noremap = true, silent = true })
             require('mason-lspconfig').setup({
                 ensure_installed = { "tsserver", "vuels", "volar", "html", "tailwindcss", "cssls", "graphql", "jsonls", "golangci_lint_ls" },
                 handlers = {
