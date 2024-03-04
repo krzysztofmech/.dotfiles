@@ -9,7 +9,7 @@ return {
                 javascript = { { "prettierd", "prettier" } },
                 typescript = { "eslint_d" },
                 javascriptvue = { "prettier" },
-                typescriptvue = { "prettier" },
+                typescriptvue = { "eslint_d" },
                 javascriptreact = { "prettier" },
                 typescriptreact = { "prettier" },
                 css = { "prettier" },
