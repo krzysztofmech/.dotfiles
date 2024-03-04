@@ -8,7 +8,7 @@ return {
                 lua = { "stylua" },
                 vue = { "eslint_d" },
                 javascript = { "eslint_d" },
-                typescript = { "eslint_d" },
+                typescript = { "eslint_d", "prettier" },
                 javascriptvue = { "eslint_d" },
                 typescriptvue = { "eslint_d" },
                 javascriptreact = { "prettier" },
