@@ -17,6 +17,12 @@ return {
             require("trouble").next({ skip_groups = true, jump = true });
         end, { desc = "Next trouble" })
 
+        vim.keymap.set("n", "<leader>tw", function() require("trouble").toggle("workspace_diagnostics") end,
+            { desc = "Toggle diagnostics workspace" })
+
+        vim.keymap.set("n", "<leader>td", function() require("trouble").toggle("document_diagnostics") end,
+            { desc = "Toggle diagnostics document" })
+
         vim.keymap.set("n", "]t", function()
             require("trouble").previous({ skip_groups = true, jump = true });
         end, { desc = "Previous trouble" })
