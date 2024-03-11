@@ -6,7 +6,7 @@ return {
         },
         config = function()
             require("tokyonight").setup({
-                transparent = false,
+                transparent = true,
                 terminal_colors = true,
                 styles = {
                     -- Style to be applied to different syntax groups
@@ -14,8 +14,8 @@ return {
                     comments = { italic = false },
                     keywords = { italic = false },
                     -- Background styles. Can be "dark", "transparent" or "normal"
-                    sidebars = "dark", -- style for sidebars, see below
-                    floats = "dark",   -- style for floating windows
+                    sidebars = "dark",
+                    floats = "dark",
                 },
             })
 
@@ -36,9 +36,12 @@ return {
 
                 styles = {
                     transparency = true,
+                    comments = { italic = false },
+                    keywords = { italic = false },
+                    sidebars = "dark", -- style for sidebars, see below
+                    floats = "dark",   -- style for floating windows
                 }
             })
-            vim.cmd("colorscheme rose-pine")
         end
     },
     {
@@ -48,6 +51,49 @@ return {
         end,
     },
     {
+        "catppuccin/nvim",
+        config = function()
+            require("catppuccin").setup({
+                falvour = "mocha",
+                transparent_background = true,
+            })
 
-    }
+            vim.cmd('colorscheme catppuccin')
+        end
+    },
+    {
+        "EdenEast/nightfox.nvim",
+        config = function()
+            require("nightfox").setup({
+                options =
+                {
+                    transparent = true,
+                    styles = {
+                        keywords = "bold",
+                    }
+                }
+
+            })
+        end
+    },
+    {
+        "rebelot/kanagawa.nvim",
+        config = function()
+            require("kanagawa").setup({
+                undercurl = true,
+                transparent = false,
+                commentStyle = {
+                    italic = false,
+                }
+            })
+        end
+    }, {
+    "Mofiqul/vscode.nvim",
+    config = function()
+        require("vscode").setup({
+            transparent = true,
+            italic_comments = false,
+        })
+    end
+}
 }

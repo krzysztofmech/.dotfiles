@@ -9,3 +9,4 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.showmode = false
 vim.opt.mouse = 'a'
+vim.opt.clipboard = "unnamed"
