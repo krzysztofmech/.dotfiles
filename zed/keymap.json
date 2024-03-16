@@ -1,0 +1,19 @@
+[
+  {
+    "context": "workspace",
+    "bindings": {
+      "cmd-e": "file_finder::Toggle"
+    }
+  },
+  {
+    "context": "Editor && mode == full",
+    "bindings": {
+      "cmd-p": [
+        "buffer_search::Deploy",
+        {
+          "focus": false
+        }
+      ]
+    }
+  }
+]
