@@ -4,7 +4,9 @@ cmd - h : yabai -m window --focus west
 cmd - l : yabai -m window --focus east
 
 cmd - s: yabai -m display --focus west
-cmd - g: yabai -m display --focus ease
+cmd - g: yabai -m display --focus east
+shift + cmd - s : yabai -m window --display west; yabai -m display --focus west;
+shift + cmd - g : yabai -m window --display east; yabai -m display --focus east;
 
 shift + cmd - r : yabai -m space --rotate 270
 shift + cmd - y : yabai -m space --mirror y-axis
