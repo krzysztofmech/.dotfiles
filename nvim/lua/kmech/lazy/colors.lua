@@ -41,6 +41,7 @@ return {
 					floats = "dark", -- style for floating windows
 				},
 			})
+			vim.cmd("colorscheme rose-pine")
 		end,
 	},
 	{
@@ -56,8 +57,6 @@ return {
 				falvour = "mocha",
 				transparent_background = true,
 			})
-
-			vim.cmd("colorscheme catppuccin")
 		end,
 	},
 	{
