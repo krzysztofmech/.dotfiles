@@ -1,0 +1,12 @@
+{
+  "name": "custom-snippers",
+  "author": "kmech",
+  "contributes": {
+    "snippets": [
+      {
+        "language": "typescriptreact",
+        "path": "./typescriptreact.json"
+      }
+    ]
+  }
+}

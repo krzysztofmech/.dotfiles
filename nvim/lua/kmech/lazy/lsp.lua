@@ -54,17 +54,19 @@ return {
             -- Here is where you configure the autocompletion settings.
             local lsp_zero = require('lsp-zero')
             local lspkind = require('lspkind')
+            local luasnip = require('luasnip')
             lsp_zero.extend_cmp()
 
             -- And you can configure cmp even more, if you want to.
             local cmp = require('cmp')
             local cmp_action = lsp_zero.cmp_action()
-            require("luasnip.loaders.from_vscode").lazy_load()
+            luasnip.filetype_extend("javascriptreact", { "html" })
+            luasnip.filetype_extend("typescriptreact", { "html" })
+            luasnip.filetype_extend("javascript", { "vue" })
+            luasnip.filetype_extend("typescript", { "vue" })
 
-            require("luasnip").filetype_extend("javascript", { "vue" })
-            require("luasnip").filetype_extend("typescript", { "vue" })
-            require("luasnip").filetype_extend("javascript", { "react" })
-            require("luasnip").filetype_extend("typescript", { "react" })
+            require("luasnip.loaders.from_vscode").load()
+            require("luasnip.loaders.from_vscode").lazy_load({ paths = vim.fn.expand("~/.config/nvim/lua/kmech/snippets") })
             cmp.setup({
                 sources = {
                     { name = "nvim_lsp" },
@@ -95,17 +97,6 @@ return {
                     ['<C-b>'] = cmp_action.luasnip_jump_backward(),
                 })
             })
-        end
-    },
-    -- snippets
-    {
-        "L3MON4D3/LuaSnip",
-        dependencies = { "rafamadriz/friendly-snippets" },
-        build = "make install_jsregexp",
-        config = function()
-            require("luasnip.loaders.from_vscode").lazy_load()
-            require "luasnip".filetype_extend("javascript", { "vue" })
-            require "luasnip".filetype_extend("typescript", { "vue" })
         end
     },
     -- lsp
