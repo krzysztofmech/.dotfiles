@@ -1,2 +1,2 @@
 # ignore github-copilot and files inside it
-.github-copilot/*
+github-copilot/

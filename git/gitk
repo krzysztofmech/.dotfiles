@@ -26,7 +26,7 @@ set colors {"#00ff00" red blue magenta darkgrey brown orange}
 set diffcolors {"#c30000" "#009800" blue}
 set mergecolors {red blue "#00ff00" purple brown "#009090" magenta "#808000" "#009000" "#ff0080" cyan "#b07070" "#70b0f0" "#70f0b0" "#f0b070" "#ff70b0"}
 set markbgcolor #e0e0ff
-set diffcontext 3
+set diffcontext 19
 set selectbgcolor gray85
 set foundbgcolor yellow
 set currentsearchhitbgcolor orange
@@ -53,12 +53,12 @@ set linkfgcolor blue
 set circleoutlinecolor black
 set diffbgcolors {"#fff3f3" "#f0fff0"}
 set web_browser open
-set geometry(main) 2560x1387+5+30
+set geometry(main) 1728x1051+5+43
 set geometry(state) zoomed
-set geometry(topwidth) 2560
+set geometry(topwidth) 1728
 set geometry(topheight) 636
 set geometry(pwsash0) "1231 1"
 set geometry(pwsash1) "1429 1"
 set geometry(botwidth) 870
-set geometry(botheight) 746
+set geometry(botheight) 410
 set permviews {}

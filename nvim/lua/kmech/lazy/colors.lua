@@ -138,7 +138,10 @@ return {
 	{
 		"olivercederborg/poimandres.nvim",
 		config = function()
-			require("poimandres").setup()
+			require("poimandres").setup({
+				transparent = true,
+				italic_comments = false,
+			})
 		end,
 	},
 	{
