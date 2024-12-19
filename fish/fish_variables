@@ -50,7 +50,7 @@ SETUVAR fish_pager_color_selected_background:\x1d
 SETUVAR fish_pager_color_selected_completion:\x1d
 SETUVAR fish_pager_color_selected_description:\x1d
 SETUVAR fish_pager_color_selected_prefix:\x1d
-SETUVAR fish_user_paths:/opt/homebrew/bin
+SETUVAR fish_user_paths:/Users/kmech/Library/Python/3\x2e9/bin\x1e/opt/homebrew/bin
 SETUVAR nvm_default_version:21\x2e6\x2e2
 SETUVAR tide_aws_bg_color:normal
 SETUVAR tide_aws_color:FF9900

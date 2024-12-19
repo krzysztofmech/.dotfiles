@@ -1,5 +1,6 @@
 return {
     "mfussenegger/nvim-lint",
+
     event = {
         "BufReadPre",
         "BufNewFile"
@@ -18,6 +19,7 @@ return {
             json = { "eslint_d" },
             graphql = { "eslint_d" },
             golang = { "golangci_lint_ls" },
+            vue = { "eslint_d" },
         }
         local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
 
@@ -27,8 +29,5 @@ return {
                 lint.try_lint()
             end,
         })
-        vim.keymap.set("n", "<leader>l", function()
-            lint.try_lint()
-        end, { desc = "Trigger linting for current file" })
     end
 }

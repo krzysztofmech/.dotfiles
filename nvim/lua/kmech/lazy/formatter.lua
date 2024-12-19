@@ -1,38 +1,46 @@
 return {
-        "stevearc/conform.nvim",
-        event = {
-                "BufReadPre",
-                "BufNewFile",
-        },
-        config = function()
-                local conform = require("conform")
+	"stevearc/conform.nvim",
+	event = {
+		"BufReadPre",
+		"BufNewFile",
+	},
+	opts = {
+		quiet = true,
+		formatters_by_ft = {
+			lua = { "stylua" },
+			vue = { "prettier", "eslint_d" },
+			javascript = { "prettier", "eslint_d" },
+			typescript = { "prettier", "eslint_d" },
+			javascriptvue = { "prettier", "eslint_d" },
+			typescriptvue = { "prettier", "eslint_d" },
+			javascriptreact = { "prettier", "eslint_d" },
+			typescriptreact = { "prettier", "eslint_d" },
+			css = { "prettier", "eslint_d" },
+			html = { "prettier", "eslint_d" },
+			json = { "fixJson", "jsonlint" },
+			graphql = { "prettier", "eslint_d" },
+		},
 
-                conform.setup({
-                        formatters_by_ft = {
-                                lua = { "stylua" },
-                                vue = { "prettierd", "eslint_d" },
-                                javascript = { "prettierd", "eslint_d" },
-                                typescript = { "prettierd", "eslint_d" },
-                                javascriptvue = { "prettierd", "eslint_d" },
-                                typescriptvue = { "prettierd", "eslint_d" },
-                                javascriptreact = { "prettierd", "eslint_d" },
-                                typescriptreact = { "prettierd", "eslint_d" },
-                                css = { "prettierd", "eslint_d" },
-                                html = { "prettierd", "eslint_d" },
-                                json = { "prettierd", "eslint_d" },
-                                graphql = { "prettierd", "eslint_d" },
-                        },
-                        -- format_on_save = {
-                        -- 	lsp_fallback = true,
-                        -- 	timeout_ms = 3000,
-                        -- },
+		vim.keymap.set({ "n", "v" }, "<leader>s", function()
+			local conform = require("conform")
+			conform.format({
+				lsp_fallback = true,
+				timeout_ms = 2000,
+			})
+		end),
 
-                        vim.keymap.set({ "n", "v" }, "<leader>s", function()
-                                conform.format({
-                                        lsp_fallback = true,
-                                        timeout_ms = 3000,
-                                })
-                        end),
-                })
-        end,
+		vim.keymap.set({ "n", "v" }, "<leader>l", function()
+			local conform = require("conform")
+			conform.format({
+				lsp_fallback = true,
+				timeout_ms = 2000,
+				formatters = { "eslint_d" },
+			})
+		end),
+	},
+	config = function(_, opts)
+		local conform = require("conform")
+
+		conform.setup(opts)
+	end,
 }

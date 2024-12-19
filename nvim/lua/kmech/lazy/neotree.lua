@@ -9,6 +9,7 @@ return {
 	},
 	config = function()
 		vim.keymap.set("n", "<leader>b", ":Neotree<CR>")
+		vim.keymap.set("n", "<leader>gs", ":Neotree float git_status<CR>")
 		require("neo-tree").setup({
 			filesystem = {
 				filtered_items = {
