@@ -8,7 +8,8 @@ return {
 		-- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
 	},
 	config = function()
-		vim.keymap.set("n", "<leader>b", ":Neotree<CR>")
+		vim.keymap.set("n", "<leader>b", ":Neotree .<CR>")
+		vim.keymap.set("n", "<leader>nd", ":Neotree ~/Downloads<CR>")
 		vim.keymap.set("n", "<leader>gs", ":Neotree float git_status<CR>")
 		require("neo-tree").setup({
 			filesystem = {

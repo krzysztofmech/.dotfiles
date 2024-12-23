@@ -16,7 +16,7 @@ return {
 		},
 		config = function()
 			require("tokyonight").setup({
-				transparent = true,
+				transparent = false,
 				terminal_colors = true,
 				styles = {
 					-- Style to be applied to different syntax groups
@@ -44,14 +44,13 @@ return {
 					migrations = true, -- Handle deprecated options automatically
 				},
 				styles = {
-					transparency = true,
+					transparency = false,
 					comments = { italic = false },
 					keywords = { italic = false },
 					sidebars = "dark", -- style for sidebars, see below
 					floats = "dark", -- style for floating windows
 				},
 			})
-			vim.cmd("colorscheme rose-pine")
 		end,
 	},
 	{
@@ -139,9 +138,10 @@ return {
 		"olivercederborg/poimandres.nvim",
 		config = function()
 			require("poimandres").setup({
-				transparent = true,
-				italic_comments = false,
+				disable_background = true,
+				disable_italics = true,
 			})
+			vim.cmd("colorscheme poimandres")
 		end,
 	},
 	{
