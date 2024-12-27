@@ -19,6 +19,7 @@ return {
 			html = { "prettier", "eslint_d" },
 			json = { "fixJson", "jsonlint" },
 			graphql = { "prettier", "eslint_d" },
+			bash = { "shfmt" },
 		},
 
 		vim.keymap.set({ "n", "v" }, "<leader>s", function()

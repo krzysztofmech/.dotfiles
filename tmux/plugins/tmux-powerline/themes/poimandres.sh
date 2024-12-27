@@ -174,9 +174,9 @@ fi
 # shellcheck disable=SC1143,SC2128
 if [ -z "$TMUX_POWERLINE_LEFT_STATUS_SEGMENTS" ]; then
 	TMUX_POWERLINE_LEFT_STATUS_SEGMENTS=(
-		"tmux_session_info $blue $thm_bg"
-		"hostname $thm_bg $brightMint"
-		"pwd $thm_bg $offWhite"
+        "hostname $thm_bg $brightMint"
+		"tmux_session_info $thm_bg $offWhite"
+		# "pwd $thm_bg $offWhite"
 		# "ifstat 30 255"
 		#"ifstat_sys 30 255"
 		# "lan_ip $sky_blue $thm_bg ${TMUX_POWERLINE_SEPARATOR_RIGHT_THIN}"

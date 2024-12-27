@@ -26,10 +26,6 @@ return {
 				highlight = {
 					enable = true,
 				},
-
-				autotag = {
-					enable = true,
-				},
 			})
 			local treesitter_parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 			treesitter_parser_config.templ = {

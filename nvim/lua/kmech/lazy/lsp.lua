@@ -99,13 +99,18 @@ return {
 				desc = "LSP actions",
 				callback = function(event)
 					local opts = { buffer = event.buf }
+					local filetype = vim.bo.filetype
+					local isJSLSP = filetype == "javascript" or filetype == "typescript" or filetype == "javascriptreact" or filetype == "typescriptreact" or filetype == "vue"
 
-					vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
-
-					-- i dont know if its necessary??
-					-- vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
+					-- if isJSLSP then
+					-- else
+					-- 	vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
+					-- 	vim.keymap.set("n", "<leader>q", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+					-- end
 
 					vim.keymap.set("n", "gd", "<cmd>VtsExec goto_source_definition<cr>", opts)
+					vim.keymap.set("n", "<leader>q", "<cmd>VtsExec source_actions<cr>", opts)
+					vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
 					vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
 					vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
 					vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
@@ -113,7 +118,6 @@ return {
 					vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
 					vim.keymap.set("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
 					vim.keymap.set({ "n", "x" }, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
-					vim.keymap.set("n", "<leader>q", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
 				end,
 			})
 
