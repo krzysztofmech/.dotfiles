@@ -1,0 +1,14 @@
+font-family = JetBrainsMonoNL Nerd Font Mono
+font-style = bold
+font-size = 14
+font-thicken = true
+adjust-cell-width = -10%
+adjust-cell-height = 30%
+window-theme = auto
+theme = poimandres
+background-opacity = 0.97
+background-blur-radius = 30
+macos-titlebar-style = native
+shell-integration-features = no-cursor
+cursor-style = underline
+
