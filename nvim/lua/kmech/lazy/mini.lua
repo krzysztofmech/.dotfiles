@@ -4,6 +4,7 @@ return {
 		"JoosepAlviste/nvim-ts-context-commentstring",
 	},
 	version = "*",
+	checkout = "stable",
 	config = function()
 		require("mini.comment").setup({
 			options = {

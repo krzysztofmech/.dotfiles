@@ -1,4 +1,20 @@
+local function on_resolve() end
+local function on_reject()
+	local text = vim.fn.expand("<cword>")
+
+	local notify = require("notify")
+	notify("No definition found: " .. text, "error", { title = "LSP" })
+end
+
+local goto_source_definition = function()
+	local vtsls = require("vtsls")
+	local winnr = vim.api.nvim_get_current_win()
+
+	vtsls.commands.goto_source_definition(winnr, on_resolve, on_reject)
+end
+
 return {
+
 	{
 		"williamboman/mason.nvim",
 		lazy = false,
@@ -99,17 +115,10 @@ return {
 				desc = "LSP actions",
 				callback = function(event)
 					local opts = { buffer = event.buf }
-					local filetype = vim.bo.filetype
-					local isJSLSP = filetype == "javascript" or filetype == "typescript" or filetype == "javascriptreact" or filetype == "typescriptreact" or filetype == "vue"
 
-					-- if isJSLSP then
-					-- else
-					-- 	vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
-					-- 	vim.keymap.set("n", "<leader>q", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
-					-- end
-
-					vim.keymap.set("n", "gd", "<cmd>VtsExec goto_source_definition<cr>", opts)
+					-- vim.keymap.set("n", "gd", "<cmd>VtsExec goto_source_definition<cr>", opts)
 					vim.keymap.set("n", "<leader>q", "<cmd>VtsExec source_actions<cr>", opts)
+					vim.keymap.set("n", "<leader>lq", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
 					vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
 					vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
 					vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
@@ -130,7 +139,11 @@ return {
 						local lspconfig = require("lspconfig")
 						lspconfig[server_name].setup({})
 					end,
-
+					ts_ls = function()
+						require("lspconfig").ts_ls.setup({
+							enabled = false,
+						})
+					end,
 					vtsls = function()
 						local lspconfig = require("lspconfig")
 
@@ -154,8 +167,30 @@ return {
 										},
 									},
 								},
+								typescript = {
+									updateImportsOnFileMove = { enabled = "always" },
+									suggest = {
+										completeFunctionCalls = true,
+									},
+									inlayHints = {
+										parameterNames = { enabled = "literals" },
+										parameterTypes = { enabled = true },
+										variableTypes = { enabled = true },
+										propertyDeclarationTypes = { enabled = true },
+										functionLikeReturnTypes = { enabled = true },
+										enumMemberValues = { enabled = true },
+									},
+								},
 							},
-							filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+							filetypes = {
+								"javascript",
+								"javascriptreact",
+								"javascript.jsx",
+								"typescript",
+								"typescriptreact",
+								"typescript.tsx",
+								"vue",
+							},
 						})
 					end,
 
@@ -171,5 +206,14 @@ return {
 				},
 			})
 		end,
+		keys = {
+			{
+				"gd",
+				function()
+					goto_source_definition()
+				end,
+				desc = "Goto Source Definition",
+			},
+		},
 	},
 }

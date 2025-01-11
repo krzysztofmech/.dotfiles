@@ -35,13 +35,14 @@ return {
 		end,
 		keys = {
 			{ "<c-s>", "<CR>", ft = "copilot-chat", desc = "Submit Prompt", remap = true },
-			{ "<leader>a", "", desc = "+ai", mode = { "n", "v" } },
+			{ "<leader>ai", "", desc = "+ai", mode = { "n", "v" } },
 			{
 				"<leader>aa",
 				function()
 					local notify = require("notify")
 
 					local toggle = function()
+
 						local status, err = pcall(require("CopilotChat").toggle)
 						if not status then
 							notify("Error toggling CopilotChat: " .. err, "error", { title = "CopilotChat" })
