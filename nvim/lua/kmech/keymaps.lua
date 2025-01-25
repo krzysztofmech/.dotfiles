@@ -36,3 +36,7 @@ keymap("n", "<leader>r", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
 -- git diff get
 keymap("n", "<leader>gh", "<cmd>diffget //2<CR>")
 keymap("n", "<leader>gl", "<cmd>diffget //3<CR>")
+
+-- copy relative path
+keymap("n", "<leader>rp", [[:let @*=expand('%')<CR>]], { desc = "[R]elative [P]ath" })
+

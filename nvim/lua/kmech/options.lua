@@ -15,3 +15,4 @@ vim.opt.showmode = false
 vim.opt.mouse = "a"
 vim.opt.clipboard = "unnamed"
 vim.opt.termguicolors = true
+vim.opt.backspace = {'indent', 'eol', 'start'}
