@@ -15,4 +15,8 @@ vim.opt.showmode = false
 vim.opt.mouse = "a"
 vim.opt.clipboard = "unnamed"
 vim.opt.termguicolors = true
+<<<<<<< Updated upstream
 vim.opt.backspace = {'indent', 'eol', 'start'}
+=======
+vim.opt.conceallevel = 1
+>>>>>>> Stashed changes
