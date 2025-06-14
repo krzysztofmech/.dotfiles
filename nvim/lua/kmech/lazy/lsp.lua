@@ -116,7 +116,7 @@ return {
 				callback = function(event)
 					local opts = { buffer = event.buf }
 
-					-- vim.keymap.set("n", "gd", "<cmd>VtsExec goto_source_definition<cr>", opts)
+					vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
 					vim.keymap.set("n", "<leader>q", "<cmd>VtsExec source_actions<cr>", opts)
 					vim.keymap.set("n", "<leader>lq", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
 					vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
@@ -133,67 +133,81 @@ return {
 			require("mason-lspconfig").setup({
 				ensure_installed = {},
 				handlers = {
-					-- this first function is the "default handler"
-					-- it applies to every language server without a "custom handler"
+					-- Default handler for all servers
 					function(server_name)
 						local lspconfig = require("lspconfig")
 						lspconfig[server_name].setup({})
 					end,
 					ts_ls = function()
-						require("lspconfig").ts_ls.setup({
-							enabled = false,
-						})
-					end,
-					vtsls = function()
 						local lspconfig = require("lspconfig")
-
 						local mason_registry = require("mason-registry")
-						local vue_language_server_path = mason_registry
-							.get_package("vue-language-server")
-							:get_install_path() .. "/node_modules/@vue/language-server"
 
-						lspconfig.vtsls.setup({
-							settings = {
-								vtsls = {
-									tsserver = {
-										globalPlugins = {
-											{
-												name = "@vue/typescript-plugin",
-												location = vue_language_server_path,
-												languages = { "typescript", "javascript", "vue" },
-												enableForWorkspaceTypeScriptVersions = true,
-												configNamespace = "typescript",
+						if mason_registry.is_installed("vtsls") then
+							local vue_language_server_path = mason_registry
+								.get_package("vue-language-server")
+								:get_install_path() .. "/node_modules/@vue/language-server"
+
+							lspconfig.vtsls.setup({
+								on_attach = function(client, bufnr)
+									local opts = { buffer = bufnr }
+									vim.keymap.set("n", "gd", goto_source_definition, opts)
+								end,
+								settings = {
+									vtsls = {
+										tsserver = {
+											globalPlugins = {
+												{
+													name = "@vue/typescript-plugin",
+													location = vue_language_server_path,
+													languages = { "typescript", "javascript", "vue" },
+													enableForWorkspaceTypeScriptVersions = true,
+													configNamespace = "typescript",
+												},
 											},
 										},
 									},
-								},
-								typescript = {
-									updateImportsOnFileMove = { enabled = "always" },
-									suggest = {
-										completeFunctionCalls = true,
+									typescript = {
+										updateImportsOnFileMove = { enabled = "always" },
+										suggest = {
+											completeFunctionCalls = true,
+										},
+										inlayHints = {
+											parameterNames = { enabled = "literals" },
+											parameterTypes = { enabled = true },
+											variableTypes = { enabled = true },
+											propertyDeclarationTypes = { enabled = true },
+											functionLikeReturnTypes = { enabled = true },
+											enumMemberValues = { enabled = true },
+										},
 									},
-									inlayHints = {
-										parameterNames = { enabled = "literals" },
-										parameterTypes = { enabled = true },
-										variableTypes = { enabled = true },
-										propertyDeclarationTypes = { enabled = true },
-										functionLikeReturnTypes = { enabled = true },
-										enumMemberValues = { enabled = true },
-									},
 								},
-							},
-							filetypes = {
-								"javascript",
-								"javascriptreact",
-								"javascript.jsx",
-								"typescript",
-								"typescriptreact",
-								"typescript.tsx",
-								"vue",
-							},
-						})
+								filetypes = {
+									"javascript",
+									"javascriptreact",
+									"javascript.jsx",
+									"typescript",
+									"typescriptreact",
+									"typescript.tsx",
+									"vue",
+								},
+							})
+						else
+							lspconfig.tsserver.setup({
+								on_attach = function(client, bufnr)
+									local opts = { buffer = bufnr }
+									vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+								end,
+								filetypes = {
+									"javascript",
+									"javascriptreact",
+									"javascript.jsx",
+									"typescript",
+									"typescriptreact",
+									"typescript.tsx",
+								},
+							})
+						end
 					end,
-
 					volar = function()
 						require("lspconfig").volar.setup({
 							init_options = {
@@ -206,14 +220,5 @@ return {
 				},
 			})
 		end,
-		keys = {
-			{
-				"gd",
-				function()
-					goto_source_definition()
-				end,
-				desc = "Goto Source Definition",
-			},
-		},
 	},
 }

@@ -1,5 +1,13 @@
 return {
 	{
+		"baliestri/aura-theme",
+		lazy = false,
+		priority = 1000,
+		config = function(plugin)
+			vim.opt.rtp:append(plugin.dir .. "/packages/neovim")
+		end,
+	},
+	{
 		"projekt0n/github-nvim-theme",
 		config = function()
 			require("github-theme").setup({
@@ -141,7 +149,7 @@ return {
 				disable_background = true,
 				disable_italics = true,
 			})
-			vim.cmd("colorscheme poimandres")
+		vim.cmd("colorscheme poimandres")
 		end,
 	},
 	{

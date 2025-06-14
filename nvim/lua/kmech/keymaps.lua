@@ -40,3 +40,5 @@ keymap("n", "<leader>gl", "<cmd>diffget //3<CR>")
 -- copy relative path
 keymap("n", "<leader>rp", [[:let @*=expand('%')<CR>]], { desc = "[R]elative [P]ath" })
 
+-- toggle relative number
+keymap("n", "<leader>tn", ':set relativenumber!<CR>', { desc = "[T]oggle Relative Line [N]umber" })
