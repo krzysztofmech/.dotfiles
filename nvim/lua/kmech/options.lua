@@ -18,3 +18,5 @@ vim.opt.termguicolors = true
 vim.opt.backspace = {'indent', 'eol', 'start'}
 vim.opt.conceallevel = 1
 vim.lsp.set_log_level("off")
+vim.diagnostic.config({ virtual_text = true })
+
