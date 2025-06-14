@@ -74,5 +74,18 @@
       "}"
     ],
     "description": "Typescript Next Page Component"
+  },
+  "Typescript React Native Component": {
+    "prefix": "rnct",
+    "body": [
+      "interface ${TM_FILENAME_BASE/(.*)$/${1:/capitalize}/}Props {",
+      "$2",
+      "}",
+      "",
+      "export default function ${TM_FILENAME_BASE/(.*)$/${1:/capitalize}/}() {",
+      "\t\treturn($3);",
+      "}"
+    ],
+    "description": "Typescript Next Page Component"
   }
 }
