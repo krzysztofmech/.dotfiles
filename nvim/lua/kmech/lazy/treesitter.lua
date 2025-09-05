@@ -1,6 +1,7 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
+		branch = "master",
 		build = ":TSUpdate",
 		config = function()
 			require("nvim-treesitter.configs").setup({
@@ -25,6 +26,7 @@ return {
 
 				highlight = {
 					enable = true,
+					disable = { "go" },
 				},
 			})
 			local treesitter_parser_config = require("nvim-treesitter.parsers").get_parser_configs()

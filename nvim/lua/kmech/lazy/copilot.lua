@@ -14,9 +14,12 @@ return {
 
 			user = user:sub(1, 1):upper() .. user:sub(2)
 			return {
+				headers = {
+					user ="😭  " .. user .. " ", -- Header to use for user questions
+					assistant = "🤓  Copilot ", -- Header to use for AI answers
+					tool = "🔪 Tool ", -- Header to use for tool calls
+				},
 				auto_insert_mode = false,
-				question_header = "😭  " .. user .. " ",
-				answer_header = "🤓  Copilot ",
 				window = {
 					title = "Copilot Chat",
 					width = 0.3,
@@ -27,9 +30,7 @@ return {
 						normal = "<C-r>",
 						insert = "<C-r>",
 					},
-					close = {
-
-					}
+					close = {},
 				},
 			}
 		end,
@@ -42,7 +43,6 @@ return {
 					local notify = require("notify")
 
 					local toggle = function()
-
 						local status, err = pcall(require("CopilotChat").toggle)
 						if not status then
 							notify("Error toggling CopilotChat: " .. err, "error", { title = "CopilotChat" })
