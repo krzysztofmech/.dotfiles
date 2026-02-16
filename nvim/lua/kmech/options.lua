@@ -15,8 +15,15 @@ vim.opt.showmode = false
 vim.opt.mouse = "a"
 vim.opt.clipboard = "unnamed"
 vim.opt.termguicolors = true
-vim.opt.backspace = {'indent', 'eol', 'start'}
+vim.opt.backspace = { "indent", "eol", "start" }
 vim.opt.conceallevel = 1
 vim.lsp.set_log_level("off")
 vim.diagnostic.config({ virtual_text = true })
 
+vim.api.nvim_create_autocmd("TextYankPost", {
+	desc = "Highlight when yanking (copying) text",
+	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+	callback = function()
+		vim.hl.on_yank()
+	end,
+})

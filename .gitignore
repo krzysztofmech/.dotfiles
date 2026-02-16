@@ -1,2 +1,10 @@
 # ignore github-copilot and files inside it
 github-copilot/
+Battle.net/
+zed/
+gatsby/
+configstore/
+simple-update-notifier/
+git/
+gatsby/
+nvim.bak/

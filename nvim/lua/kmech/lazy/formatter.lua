@@ -20,6 +20,7 @@ return {
 			json = { "fixJson", "jsonlint" },
 			graphql = { "prettier", "eslint_d" },
 			bash = { "shfmt" },
+			sql = { "sqlfluff" },
 		},
 
 		vim.keymap.set({ "n", "v" }, "<leader>s", function()

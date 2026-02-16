@@ -193,7 +193,7 @@ return {
 							})
 						else
 							lspconfig.tsserver.setup({
-								on_attach = function(client, bufnr)
+								on_attach = function(_, bufnr)
 									local opts = { buffer = bufnr }
 									vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 								end,
