@@ -11,3 +11,4 @@ nvim.bak/
 fish/fish_variables
 tmux/plugins/*
 !tmux/plugins/tpm
+!tmux/plugins/tmux-powerline
